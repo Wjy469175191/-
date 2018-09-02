@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.hidden {
+  display: none;
+}
+.load {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: #333;
+  transition: opacity 1.5s;
+  z-index: 50;
+}
+.load header {
+  position: relative;
+  top: 30%;
+  color: #fff;
+  text-align: center;
+}
+.load header h1 {
+  font-size: 50px;
+}
+.load header h3 {
+  font-size: 25px;
+}
+.load .progress {
+  width: 80%;
+  height: 0.4rem;
+  margin: auto;
+  border-radius: 10px;
+  background: #fff;
+  position: relative;
+  top: 50%;
+  overflow: hidden;
+}
+.load .progress .progressBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(45deg, #00cc99 0%, #00cc99 25%, #00e565 25%, #00e565 50%, #00cc99 50%, #00cc99 75%, #00e565 75%, #00e565 100%);
+  background-size: 0.4rem 0.4rem;
+  background-repeat: repeat-x;
+}
+.phone {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 30;
+  transition: all 0.5s;
+  background: url("../images/phone-bg.jpg") no-repeat center;
+  background-size: 100% 100%;
+}
+.phone header {
+  position: relative;
+  text-align: center;
+  top: 1rem;
+}
+.phone header h2 {
+  font-size: 30px;
+  color: #fff;
+}
+.phone header h3 {
+  font-size: 30px;
+  color: #fff;
+}
+.phone header h4 {
+  font-size: 20px;
+  color: #fff;
+}
+.phone .btn_box {
+  width: 5.2rem;
+  height: 3.6rem;
+  background: url("../images/phone-listen.png") center;
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  margin-left: -2.6rem;
+}
+.phone .btn_box .phone_listen {
+  width: 1.7rem;
+  height: 1.7rem;
+  position: absolute;
+  left: 3.59rem;
+  top: 1.45rem;
+  border: 1px solid #27df27;
+  border-radius: 50%;
+  animation: move 1s infinite;
+}
+.phone .no_listen {
+  transition: all 0.5s;
+  width: 5.2rem;
+  left: 50%;
+  margin-left: -2.6rem;
+  height: 6.59rem;
+  position: absolute;
+  bottom: 0.5rem;
+  background: url("../images/phone-key.png") center;
+  background-size: 100% 100%;
+  transform: translateY(7rem);
+}
+.phone .no_listen .phone_close {
+  position: absolute;
+  width: 1.7rem;
+  height: 1.7rem;
+  bottom: 0.3rem;
+  left: 50%;
+  margin-left: -0.85rem;
+}
+.msg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 20;
+  background: #eee;
+}
+.msg ul {
+  padding-top: 0.2rem;
+}
+.msg ul li {
+  transition: opacity 1s,transform 1s;
+  transform: translateY(1rem);
+  opacity: 0;
+}
+.msg ul .left {
+  position: relative;
+  left: 1.25rem;
+  float: left;
+  max-width: 3.6rem;
+  padding: 0.25rem;
+  border: 0.02rem solid #cacaca;
+  border-radius: 10px;
+  margin-bottom: 0.4rem;
+  font-size: 0.26rem;
+  background: #fff;
+}
+.msg ul .left::before {
+  content: '';
+  width: 0.1rem;
+  height: 0.2rem;
+  display: block;
+  position: absolute;
+  left: -0.1rem;
+  top: 0.3rem;
+  background: url("../images/message-arrow1.png");
+  background-size: cover;
+}
+.msg ul .left img {
+  width: 0.82rem;
+  height: 0.82rem;
+  border-radius: 50%;
+  position: absolute;
+  left: -1rem;
+}
+.msg ul .right {
+  position: relative;
+  right: 1.25rem;
+  float: right;
+  max-width: 3.6rem;
+  padding: 0.25rem;
+  border: 0.02rem solid #cacaca;
+  border-radius: 10px;
+  margin-bottom: 0.4rem;
+  font-size: 0.26rem;
+  background: #33ff1d;
+}
+.msg ul .right::before {
+  content: '';
+  width: 0.1rem;
+  height: 0.2rem;
+  display: block;
+  position: absolute;
+  right: -0.1rem;
+  top: 0.3rem;
+  background: url("../images/message-arrow2.png");
+  background-size: cover;
+}
+.msg ul .right img {
+  width: 0.82rem;
+  height: 0.82rem;
+  border-radius: 50%;
+  position: absolute;
+  right: -1rem;
+}
+.msg .keybord {
+  width: 6.4rem;
+  height: 5.16rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3.2rem;
+  background: url("../images/message-keyboard.png") no-repeat center;
+  background-size: 100% 100%;
+  transition: all 1s;
+  transform: translateY(4.16rem);
+}
+.msg .keybord .text {
+  width: 4rem;
+  height: 0.4rem;
+  position: absolute;
+  top: 0.35rem;
+  left: 0.9rem;
+  font-size: 0.25rem;
+}
+.msg .keybord .btn {
+  position: absolute;
+  opacity: 0;
+  right: 0.1rem;
+  bottom: 0.6rem;
+  width: 1.5rem;
+  height: 0.8rem;
+  background: url("../images/message-chatBtn.png") no-repeat center;
+  background-size: 100% 100%;
+}
+@keyframes move {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}

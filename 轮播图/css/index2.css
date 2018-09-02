@@ -1,0 +1,86 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.carousel{
+    width: 600px;
+    height: 250px;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+    background: url("http://www.sucaijishi.com/uploadfile/2014/0524/20140524124241131.gif") no-repeat center;
+}
+.carousel ul.img_box{
+    width: 600px;
+    height: 250px;
+    position: relative;
+}
+.carousel ul.img_box li{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 600px;
+    height: 250px;
+
+}
+.carousel ul.img_box li img{
+    width: 100%;
+    height: 100%;
+}
+.carousel ul.img_box li p{
+    width: 600px;
+    height: 35px;
+    background: rgba(0,0,0,0.5);
+    line-height: 35px;
+    padding-left:30px ;
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    bottom: 0;
+}
+.carousel div.btn_l,.carousel div.btn_r{
+    width: 35px;
+    height: 100px;
+    position: absolute;
+    top: 75px;
+    background: rgba(0,0,0,0.5);
+    line-height: 100px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    display: none;
+    z-index: 20;
+}
+.carousel div.btn_l{
+    left: 0;
+    border-radius: 0 5px 5px 0;
+}
+.carousel div.btn_r{
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+.carousel .tips_box{
+    position: absolute;
+    bottom: 45px;
+    width: 600px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    z-index: 30;
+}
+.carousel .tips_box .tip{
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    margin: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+.carousel .tips_box li.current{
+    background: rgba(255,100,50,0.5);
+}

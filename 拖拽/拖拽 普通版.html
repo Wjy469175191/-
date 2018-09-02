@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽普通版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(rgba(10, 10, 10, 0.5), rgba(255, 255, 255, 0.8));
+            color: #BE3948;
+            line-height: 150px;
+            text-align: center;
+            font-size: 30px;
+            cursor: move;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">拖我</div>
+</body>
+</html>
+<script>
+    var ball = document.getElementById('div1');
+
+    function start(e) {
+        clearTimeout(this.flyTimer);
+        clearTimeout(this.dropTimer);
+        e = e || window.event;
+        this.style.position = 'absolute';
+        this.preLeft = Number(this.style.left.replace(/px$/, ''));
+        this.preTop = Number(this.style.top.replace(/px$/, ''));
+        var startX = this.offsetLeft,
+            startY = this.offsetTop;
+        this.mx = e.pageX - startX;
+        this.my = e.pageY - startY;
+        document.onmousemove = move.bind(this);
+        document.onmouseup = up.bind(this);
+    }
+
+    function move(e) {
+        e = e || window.event;
+        this.style.left = e.pageX - this.mx + 'px';
+        this.style.top = e.pageY - this.my + 'px';
+        getSpeed.call(this);
+    }
+
+    function up() {
+        document.onmousemove = null;
+        document.onmouseup = null;
+        fly.call(this);
+        this.dropSpeeda=9.8;
+        this.dropJourney=this.preTop;
+        this.dropFlag=0;
+        drop.call(this);
+    }
+
+    ball.onmousedown = start;
+
+    //加特效
+    function getSpeed() {
+        var oLeft = Number(this.style.left.replace(/px$/, ''));
+        this.speed = oLeft - this.preLeft;
+        this.preLeft = oLeft;
+        var oTop = Number(this.style.top.replace(/px$/, ''));
+        this.dropSpeed=oTop - this.preTop;
+        this.preTop = oTop;
+    }
+
+    function fly() {
+        var maxL=(document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth;
+        this.flyTimer=setTimeout( ()=> {
+            this.speed*=0.98;
+            this.preLeft+=this.speed;
+            if(this.preLeft>=maxL){
+                this.preLeft=maxL;
+                this.speed*=-1;
+            }
+            if(this.preLeft<=0){
+                this.preLeft=0;
+                this.speed*=-1;
+            }
+            this.style.left =this.preLeft+'px';
+            if(Math.abs(this.speed)<=0.01){
+                clearTimeout(this.flyTimer);
+                return;
+            }
+            fly.call(this);
+        },30);
+    }
+    
+    function drop() {
+        var maxT=(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        this.dropTimer=setTimeout(()=>{
+            this.dropSpeed=this.dropSpeed+this.dropSpeeda;
+            this.dropSpeed*=0.98;
+            this.dropJourney+=this.dropSpeed;
+            if(this.dropJourney>=maxT){
+                this.dropJourney=maxT;
+                this.dropSpeed*=-1;
+                this.dropFlag++;
+            }else{
+                this.dropFlag=0
+            }
+            if(this.dropFlag>2){
+                clearTimeout(this.dropTimer);
+                return;
+            }
+            this.style.top=this.dropJourney+'px';
+            drop.call(this);
+        },30);
+    }
+    
+
+</script>

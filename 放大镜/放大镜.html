@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .litImg {
+            float: left;
+            width: 233px;
+            height: 320px;
+            overflow: hidden;
+            margin-left: 50px;
+            position: relative;
+            cursor: move;
+        }
+
+        .litImg img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mask {
+            display: none;
+            width: 75%;
+            height: 75%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(255, 100, 50, 0.5);
+        }
+
+        .bigImg {
+            display: none;
+            float: left;
+            width: 466px;
+            height: 640px;
+            overflow: hidden;
+            margin-left: 50px;
+            position: relative;
+        }
+
+        .bigImg img {
+            width: 133%;
+            height: 133%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="litImg">
+    <img src="img/timg%20(2).jpg" alt="">
+    <div class="mask"></div>
+</div>
+<div class="bigImg">
+    <img src="img/timg%20(2).jpg" alt="">
+</div>
+</body>
+</html>
+<script>
+    var litImg = document.getElementsByClassName('litImg')[0],
+        mask = litImg.getElementsByClassName('mask')[0],
+        bigImg = document.getElementsByClassName('bigImg')[0],
+        bigImg_img = bigImg.getElementsByTagName('img')[0];
+    var litImgW = litImg.clientWidth,
+        litImgH = litImg.clientHeight;
+
+    litImg.onmouseenter = menter;
+
+    function menter() {
+        mask.style.display = 'block';
+        bigImg.style.display = 'block';
+        this.onmousemove = mmove.bind(this);
+        this.onmouseleave = mleave.bind(this);
+        this.n = bigImg.clientWidth / mask.offsetWidth;
+    }
+
+    function mmove(e) {
+        e = e || window.event;
+        var mx = e.pageX - this.offsetLeft,
+            my = e.pageY - this.offsetTop;
+        if (mx <= mask.offsetWidth / 2) mx = mask.offsetWidth / 2;
+        if (mx >= (litImgW - mask.offsetWidth / 2)) mx = litImgW - mask.offsetWidth / 2;
+        if (my <= mask.offsetHeight / 2) my = mask.offsetHeight / 2;
+        if (my >= (litImgH - mask.offsetHeight / 2)) my = litImgH - mask.offsetHeight / 2;
+        mask.style.left = mx - mask.offsetWidth / 2 + 'px';
+        mask.style.top = my - mask.offsetHeight / 2 + 'px';
+        bigImg_img.style.left = -(mx - mask.offsetWidth / 2) * this.n + 'px';
+        bigImg_img.style.top = -(my - mask.offsetHeight / 2) * this.n + 'px';
+    }
+
+    function mleave() {
+        mask.style.display = 'none';
+        bigImg.style.display = 'none';
+        this.onmousemove = null;
+        this.onmouseleave = null;
+    }
+
+
+</script>

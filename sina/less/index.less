@@ -1,0 +1,228 @@
+@import "font.less";
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lt {
+  float: left;
+}
+
+.rt {
+  float: right;
+}
+
+@r: 75rem;
+
+header {
+  background: linear-gradient(40deg, #838dfb, #8191f8 10%, #4fa2f1 50%, #1eabf6);
+  overflow: hidden;
+  position: relative;
+  .title {
+    padding: 20 / @r  20/@r  0  20/@r;
+    > div {
+      color: #fff;
+      position: relative;
+      &:nth-child(1) {
+        font-size: 132 / @r;
+        .lt;
+        top: -20 / @r;
+      }
+      &:nth-child(2), &:nth-child(3) {
+        font-size: 36 / @r;
+        .rt;
+        top: 23 / @r;
+      }
+      &:nth-child(3) {
+        margin-right: 20 / @r;
+      }
+    }
+  }
+  nav {
+    float: left;
+    top: 50 / @r;
+    width: 100%;
+    overflow: hidden;
+    margin-top: -20 / @r;
+    padding-bottom: 10 /@r;
+    margin-left: 3 / @r;
+    ul li {
+      list-style: none;
+      .lt;
+      width: 68 / @r;
+      font-size: 32 / @r;
+      margin: 17/@r 19/@r;
+      color: #fff;
+    }
+    .fn(@n) when (@n < 8) {
+      ul.navs li:nth-child(@{n}) {
+        margin-top: 0;
+      }
+      .fn(@n + 1);
+    }
+    .fn(1);
+  }
+}
+.tab_box {
+  width: 100%;
+  ul {
+    list-style: none;
+    display: flex;
+    padding: 0 20 / @r;
+    border-bottom: 1px solid #cecaec;
+    li {
+      position: relative;
+      flex: 1;
+      height: 80 / @r;
+      line-height: 80 / @r;
+      font-size: 34 / @r;
+      color: #1a1a1a;
+      text-align: center;
+      &.current {
+        font-weight: 900;
+        color: #008af5;
+        &::after {
+          content: '';
+          display: block;
+          width: 50 / @r;
+          height: 4 / @r;
+          position: absolute;
+          background: #008af5;
+          bottom: -2 / @r;
+          left: 50%;
+          margin-left: -25 / @r;
+        }
+      }
+      &:nth-child(1){
+        text-align: left;
+        &.current::after{
+          left: 45 / @r;
+          margin-left: 0;
+        }
+      }
+      &:nth-child(3){
+        text-align: right;
+        &.current::after{
+          right: 45 / @r;
+          margin-left: 25 / @r;
+        }
+      }
+    }
+  }
+}
+.news_box{
+  padding: 20 / @r  20 / @r  0;
+  .swiper-container{
+    height: 340 / @r;
+    overflow: hidden;
+    .swiper-wrapper{
+      .swiper-slide{
+        a{
+          display: block;
+          width: 100%;
+          max-height: 340 / @r;
+          position: relative;
+          img{
+            width: 100%;
+          }
+          span{
+            display: block;
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            color: #fff;
+            font-size: 32 / @r;
+            padding: 94 / @r  16 / @r  16 / @r;
+            background: linear-gradient(top,transparent,rgba(0,0,0,0.4));
+            background: -webkit-linear-gradient(top,transparent,rgba(0,0,0,0.4));
+          }
+        }
+      }
+    }
+    .pageBox{
+      box-sizing: border-box;
+      text-align: right;
+      color: #fff;
+      font-size: 20 / @r;
+      padding-right: 20 / @r;
+      margin-bottom: 10 / @r;
+      .currentPage{
+        font-size: 35 / @r;
+      }
+    }
+  }
+  .listBox{
+    >a{
+      padding: 22 / @r 0;
+      display: flex;
+      text-decoration: none;
+      color: #1a1a1a;
+      border-bottom: 1px solid #cecaec;
+      >div.textBox{
+        flex: 1;
+        position: relative;
+        width: 100%;
+        min-height: 100 / @r;
+        p{
+          font-size: 34 / @r;
+          line-height: 48 / @r;
+          margin-bottom: 10 / @r;
+        }
+        .comment_box{
+          position: absolute;
+          bottom: 13 / @r;
+          color: #888;
+          width: 100%;
+          text-align: right;
+          font-size: 20 / @r;
+          em{
+            font-style:normal;
+          }
+        }
+      }
+      .img_box{
+        width: 200 / @r;
+        height:  134 / @r;
+        margin-right: 25 / @r;
+        img{
+          width: 100%;
+        }
+      }
+    }
+    a.three_box{
+      display: block;
+      p {
+        font-size: 34 / @r;
+        line-height: 48 / @r;
+        margin-bottom: 10 / @r;
+      }
+        .three_pic{
+          display: flex;
+          div{
+            flex: 1;
+            &:nth-child(2){
+              margin:0 10 / @r;
+            }
+            img{
+              width: 100%;
+            }
+          }
+        }
+      .comment_box{
+        margin-top: 10 / @r;
+        text-align: right;
+        width: 100%;
+        em{
+          font-style: normal;
+          font-size: 20 / @r;
+          color: #888;
+        }
+      }
+    }
+  }
+}
+
+

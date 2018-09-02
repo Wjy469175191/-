@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>照片墙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .content {
+            width: 510px;
+            margin: auto;
+        }
+
+        .imgBox {
+            background: #adccb6;
+            width: 510px;
+            height: 680px;
+            position: relative;
+            user-select: none;
+        }
+
+        .imgBox li {
+            background: #eea082;
+            width: 150px;
+            height: 150px;
+            float: left;
+            margin: 10px;
+            cursor: move;
+        }
+
+        .imgBox li img {
+            width: 100%;
+            height: 100%;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <ul class="imgBox">
+        <li><img src="img/1.png" alt=""></li>
+        <li><img src="img/2.png" alt=""></li>
+        <li><img src="img/3.png" alt=""></li>
+        <li><img src="img/4.png" alt=""></li>
+        <li><img src="img/5.png" alt=""></li>
+        <li><img src="img/6.png" alt=""></li>
+        <li><img src="img/7.png" alt=""></li>
+        <li><img src="img/8.png" alt=""></li>
+        <li><img src="img/9.png" alt=""></li>
+        <li><img src="img/10.png" alt=""></li>
+        <li><img src="img/11.png" alt=""></li>
+        <li><img src="img/12.png" alt=""></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/Event.js"></script>
+<script src="js/Drag.js"></script>
+<script>
+    var imgBox = document.getElementsByTagName('ul')[0],
+        imgLis = imgBox.getElementsByTagName('li');
+    var n = 1,
+        flag = 0;
+
+
+    [...imgLis].reverse().forEach((item) => {
+        item.style.left = item.offsetLeft + 'px';
+        item.style.top = item.offsetTop + 'px';
+        item.style.margin = 0;
+        item.style.position = 'absolute';
+        on(item, 'myaddZIndex', addZIndex);
+        on(item, 'myGethit', gethit);
+        on(item, 'myChangePos', changePos);
+        on(item, 'mousedown', dragStart);
+    });
+
+    function addZIndex() {
+        this.style.zIndex = n++;
+    }
+
+    function gethit() {
+        this.el = this.offsetLeft;
+        this.er = this.offsetLeft + this.offsetWidth;
+        this.et = this.offsetTop;
+        this.eb = this.offsetTop + this.offsetHeight;
+        this.ary = [];
+        [...imgLis].forEach((item) => {
+            if (item === this) return;
+            item.el = item.offsetLeft;
+            item.er = item.offsetLeft + item.offsetWidth;
+            item.et = item.offsetTop;
+            item.eb = item.offsetTop + item.offsetHeight;
+            if (item.er < this.el || item.el > this.er || item.eb < this.et || item.et > this.eb) {
+                item.style.background = '';
+            } else {
+                item.style.background = '#ccc6c8';
+                this.ary.push(item);
+            }
+        });
+    }
+
+    function changePos() {
+        this.ary = this.ary || [];
+        if (!this.ary.length) {
+            $(this).animate({left: this.startX, top: this.startY}, 100, function () {
+                flag = 0;
+            });
+            return;
+        }
+        this.ary.forEach((item) => {
+            item.n = Math.pow(this.offsetLeft - item.offsetLeft, 2) + Math.pow(this.offsetTop - item.offsetTop, 2);
+            item.style.background = '';
+        });
+        this.ary.sort((a, b) => {
+            return a.n - b.n;
+        });
+        $(this).animate({left: this.ary[0].offsetLeft, top: this.ary[0].offsetTop}, 100);
+        $(this.ary[0]).animate({left: this.startX, top: this.startY}, 100, function () {
+            flag = 0;
+        });
+    }
+
+</script>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>交互简历</title>
+    <link rel="stylesheet" href="./css/1.css">
+</head>
+<script>
+    //根据设计稿 去设置 html 的 font-size  属性
+    (function (n) {
+        //n 640 --》设计稿的宽度
+        // w/640 == x/100
+        let w = document.documentElement.clientWidth || document.body.clientWidth; // 屏幕的宽度
+        document.documentElement.style.fontSize = w / n * 100 + 'px';
+    })(640)
+</script>
+<body>
+    <section class="loadingBox">
+        <header>
+            <h1>珠峰培训</h1>
+            <h2>H5场景的交互型简历</h2>
+        </header>
+        <div class="progress">
+            <div class="progressBar"></div>
+        </div>
+    </section>
+    <section class="phoneBox">
+        <header>
+            <h2>珠峰培训</h2>
+            <h3>www.zhufengpeixun.com</h3>
+            <h4 class="hidden">00:00</h4>
+        </header>
+        <div class="listen_box">
+            <div class="listenBtn"></div>
+        </div>
+        <div class="no_listen_box">
+            <div class="no_listen_btn"></div>
+        </div>
+    </section>
+    <section class="msgBox">
+        <ul>
+            <li>
+                <div>
+                    <img src="./images/message-head1.png" alt="">
+                    面试官您好，我叫XXX，来自于北京，2018年毕业于XXX院校，学习的是XXX专业，到目前位置工作3年
+                </div>
+            </li>
+            <li class="right">
+                <div>
+                    <img src="./images/message-head2.png" alt="">
+                    哇塞！好牛X啊！介绍一下自己的专业技能吧！
+                </div>
+            </li>
+            <li>
+                <div>
+                <img src="images/message-head1.png" alt="">
+                本人擅长：原生JS、ES6、Promise等设计模式、组件和插件封装，看过JQ源码，可以开发各种Hybrid混合APP...
+                </div>
+            </li>
+            <li class="right btnMsg">
+                <div>
+                <img src="images/message-head2.png">
+                我们现在使用的是VUE和REACT
+                </div>
+            </li>
+            <li>
+                <div>
+                <img src="images/message-head1.png" alt="">
+                之前的公司使用的是REACT开发，个人对于REACT渲染原理、MVC模式、SPA单页面应用、DIFF差异渲染机制以及REDUX原理等都有研究，掌握的很熟练，对于VUE之前也做过，如果公司需要可以快速入手
+                </div>
+            </li>
+
+            <li class="right">
+                <div>
+                <img src="images/message-head2.png">
+                webpack会吗？
+                </div>
+            </li>
+            <li>
+                <div>
+                <img src="images/message-head1.png" alt="">
+                之前项目都是基于脚手架完成的，自己偶尔去修改一些webpack配置项，不过目前正在深入研究，可以搭建简单的脚手架
+                </div>
+            </li>
+            <li>
+                <div>
+                <img src="images/message-head1.png">
+                同时对于NODE/EXPRESS等后台开发也有所涉猎，只是没有应用到项目实战中，目前也正在研究，对这个比较感兴趣
+                </div>
+            </li>
+            <li class="right">
+                <div>
+                <img src="images/message-head2.png">
+                你认为你的优点在于哪？和其他人对比，公司为啥要录用你！
+                </div>
+            </li>
+            <li>
+                <div>
+                <img src="images/message-head1.png">
+                肯吃苦、肯加班、能力高、要钱少...这些够吗?
+                </div>
+            </li>
+            <li class="right">
+                <div>
+                <img src="images/message-head2.png">
+                来吧！我们需要你！
+                </div>
+            </li>
+
+        </ul>
+        <div class="keyboard">
+            <div class="textBox"></div>
+            <div class="btn hidden"></div>
+        </div>
+    </section>
+    <audio src="./audio/bell.mp3" preload="none" loop id="bell"></audio>
+    <audio src="./audio/say.mp3" preload="none" id="say"></audio>
+    <audio src="./audio/music.mp3" preload="none" loop id="bg_music"></audio>
+<!--
+    audio 音频
+    video 视频
+
+    一、src 文件路径
+    二、preload  1、none 2、auto 3、metadata
+          1、不进行预加载 2、预加载 3、只加载元数据
+    三、autoplay 自动播放
+    四、loop  循环播放
+
+    js：
+    音频.play() 让音频播放
+    音频.pause() 让音频暂停
+
+    音频.currentTime 音频当前播放的时间  只能获取
+    音频.ended  检测是否结束  若是true 则表示 音频播放完成；
+    音频.paused  若是true 则 表示 音频暂停
+    音频.duration 音频的总共时间
+
+-->
+</body>
+</html>
+<script src="js/zepto.min.js"></script>
+<script src="js/index.js"></script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象拖拽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1, #div2 {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(rgba(10, 10, 10, 0.5), rgba(255, 255, 255, 0.8));
+            color: #BE3948;
+            line-height: 150px;
+            text-align: center;
+            font-size: 30px;
+            cursor: move;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">拖我</div>
+<div id="div2">拖我</div>
+</body>
+</html>
+<script>
+    var ball = document.getElementById('div1');
+    var ball2 = document.getElementById('div2');
+
+    class Drag {
+        constructor(ele) {
+            this.ele = ele;
+            this.ele.style.position = 'absolute';
+            this.ele.onmousedown = this.dragDown.bind(this);
+        }
+
+        dragDown(e) {
+            e = e || window.event;
+            this.ele.startX = this.ele.offsetLeft;
+            this.ele.startY = this.ele.offsetTop;
+            this.ele.mStarX = e.pageX - this.ele.startX;
+            this.ele.mStarY = e.pageY - this.ele.startY;
+            document.onmousemove = this.dragMove.bind(this.ele);
+            document.onmouseup = this.dragEnd.bind(this.ele);
+        }
+
+        dragMove(e) {
+            e = e || window.event;
+            this.style.left = e.pageX - this.mStarX + 'px';
+            this.style.top = e.pageY - this.mStarY + 'px';
+        }
+
+        dragEnd() {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+
+    }
+
+    var d = new Drag(ball);
+    var d2 = new Drag(ball2);
+
+</script>

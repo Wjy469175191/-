@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQ放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .litImg {
+            float: left;
+            width: 233px;
+            height: 320px;
+            overflow: hidden;
+            margin-left: 50px;
+            position: relative;
+            cursor: move;
+        }
+
+        .litImg img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mask {
+            display: none;
+            width: 75%;
+            height: 75%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(255, 100, 50, 0.5);
+        }
+
+        .bigImg {
+            display: none;
+            float: left;
+            width: 466px;
+            height: 640px;
+            overflow: hidden;
+            margin-left: 50px;
+            position: relative;
+        }
+
+        .bigImg img {
+            width: 133%;
+            height: 133%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="litImg">
+    <img src="img/timg%20(2).jpg" alt="">
+    <div class="mask"></div>
+</div>
+<div class="bigImg">
+    <img src="img/timg%20(2).jpg" alt="">
+</div>
+</body>
+</html>
+<script src="../../d%20ketangbiji/jquery-3.3.1.js"></script>
+<script>
+    var $litBox = $('.litImg'),
+        $mask = $('.mask'),
+        $bigBox = $('.bigImg'),
+        $bigImg = $('.bigImg img');
+    var litBoxL = $litBox[0].offsetLeft,
+        litBoxT = $litBox[0].offsetTop,
+        litBoxW = $litBox[0].clientWidth,
+        litBoxH = $litBox[0].clientHeight;
+
+    $litBox.on('mouseenter', function () {
+        $mask.css({display: 'block'});
+        $bigBox.css({display: 'block'});
+        this.maskW = $mask[0].offsetWidth;
+        this.maskH = $mask[0].offsetHeight;
+        this.n = $bigBox[0].offsetWidth / $mask[0].offsetWidth;
+    }).on('mousemove', function (e) {
+        e = e || window.event;
+        var mx = e.pageX - litBoxL - this.maskW / 2,
+            my = e.pageY - litBoxT - this.maskH / 2;
+        mx = mx <= 0 ? 0 : (mx >= litBoxW - this.maskW ? litBoxW - this.maskW : mx);
+        my = my <= 0 ? 0 : (my >= litBoxH - this.maskH ? litBoxH - this.maskH : my);
+        $mask.css({left: mx, top: my});
+        $bigImg.css({left: -mx * this.n, top: -my * this.n})
+    }).on('mouseleave', function () {
+        $mask.css({display: 'none'});
+        $bigBox.css({display: 'none'});
+    })
+
+
+</script>
